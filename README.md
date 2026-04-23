@@ -22,32 +22,40 @@ Mahasiswa mengisi, memodifikasi, dan mengembangkan kode ini sesuai topik kelompo
 
 ---
 
-## 🗂️ Struktur Proyek
+## 📁 Struktur Proyek
 
-```
 rag-uts-[nama-kelompok]/
-├── data/                    # Dokumen sumber Anda (PDF, TXT, dll.)
-│   └── sample.txt           # Contoh dokumen (ganti dengan dokumen Anda)
-├── src/
-│   ├── indexing.py          # 🔧 WAJIB DIISI: Pipeline indexing
-│   ├── query.py             # 🔧 WAJIB DIISI: Pipeline query & retrieval
-│   ├── embeddings.py        # 🔧 WAJIB DIISI: Konfigurasi embedding
-│   └── utils.py             # Helper functions
-├── ui/
-│   └── app.py               # 🔧 WAJIB DIISI: Antarmuka Streamlit
-├── docs/
-│   └── arsitektur.png       # 📌 Diagram arsitektur (buat sendiri)
-├── evaluation/
-│   └── hasil_evaluasi.xlsx  # 📌 Tabel evaluasi 10 pertanyaan
-├── notebooks/
-│   └── 01_demo_rag.ipynb    # Notebook demo dari hands-on session
-├── .env.example             # Template environment variables
-├── .gitignore
-├── requirements.txt
-└── README.md
-```
+│
+├── data/  
+│   ├── RP_Publish81525.pdf  
+│   ├── dsultan,+10.+Andriani.pdf  
+│   ├── jurnalppt,+Jurnal+Vol+4+No+2+Nas....pdf  
+│   ├── sample_dokumen.txt  
+│   └── share-of-global-plastic-waste-emitted....csv / txt  
+│
+├── src/  
+│   ├── indexing.py        # Pipeline indexing  
+│   ├── query.py           # Query & retrieval  
+│   ├── embeddings.py      # Konfigurasi embedding  
+│   └── utils.py           # Helper functions  
+│
+├── ui/  
+│   └── app.py             # Streamlit UI  
+│
+├── docs/  
+│   └── arsitektur.png     # Diagram arsitektur  
+│
+├── evaluation/  
+│   └── hasil_evaluasi.xlsx  
+│
+├── notebooks/  
+│   └── 01_demo_rag.ipynb  
+│
+├── .env.example  
+├── .gitignore  
+├── requirements.txt  
+└── README.md  
 
----
 
 ## ⚡ Cara Memulai (Quickstart)
 
