@@ -7,15 +7,15 @@ Mahasiswa mengisi, memodifikasi, dan mengembangkan kode ini sesuai topik kelompo
 
 ---
 
-## 👥 Identitas Kelompok
+👥 Identitas Kelompok
 
 | Nama | NIM | Tugas Utama |
 |------|-----|-------------|
-| ...  | ... | ...         |
-| ...  | ... | ...         |
-| ...  | ... | ...         |
+| Arie Dwi Sulistyo | 244311004 | Project Manager  |
+| Dila Alif Regita  | 244311010 | Data Analyst         |
+| Suqya Rohmatin  | 244311028 | Data Engineer         |
 
-**Topik Domain:** *(isi: Akademik / Kesehatan / Hukum / Bisnis / Pertanian / Teknologi)*  
+**Topik Domain:** *Sampah Laut*  
 **Stack yang Dipilih:** *(isi: LangChain / LlamaIndex / From Scratch)*  
 **LLM yang Digunakan:** *(isi: Groq / Gemini / Ollama / lainnya)*  
 **Vector DB yang Digunakan:** *(isi: ChromaDB / FAISS / lainnya)*
@@ -155,4 +155,4 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 
 - **Mata Kuliah:** Data Engineering
 - **Program Studi:** D4 Teknologi Rekayasa Perangkat Lunak
-- **Deadline:** *(isi tanggal)*
+- **Deadline:** *24 April 2026*
