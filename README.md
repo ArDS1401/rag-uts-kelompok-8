@@ -63,7 +63,7 @@ rag-uts-[nama-kelompok]/
 
 ```bash
 # Clone repository ini
-git clone https://github.com/[username]/rag-uts-[kelompok].git
+git clone https://github.com/ArDS1401/rag-uts-kelompok8.git
 cd rag-uts-[kelompok]
 
 # Buat virtual environment
@@ -120,7 +120,7 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 | `CHUNK_SIZE` | 500 | Ukuran setiap chunk teks (karakter) |
 | `CHUNK_OVERLAP` | 50 | Overlap antar chunk |
 | `TOP_K` | 3 | Jumlah dokumen relevan yang diambil |
-| `MODEL_NAME` | *(isi)* | Nama model LLM yang digunakan |
+| `MODEL_NAME` | Gemini 3 Flash | Model AI yang digunakan untuk menjawab pertanyaan dengan  cepat dan mudah |
 
 ---
 
@@ -132,6 +132,14 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 |---|-----------|----------------|---------------|-----------|
 | 1 | ... | ... | ... | ... |
 | 2 | ... | ... | ... | ... |
+| 3 | ... | ... | ... | ... |
+| 4 | ... | ... | ... | ... |
+| 5 | ... | ... | ... | ... |
+| 6 | ... | ... | ... | ... |
+| 7 | ... | ... | ... | ... |
+| 8 | ... | ... | ... | ... |
+| 9 | ... | ... | ... | ... |
+| 10 | ... | ... | ... | ... |
 
 **Rata-rata Skor:** ...  
 **Analisis:** ...
@@ -162,4 +170,4 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 
 - **Mata Kuliah:** Data Engineering
 - **Program Studi:** D4 Teknologi Rekayasa Perangkat Lunak
-- **Deadline:** *24 April 2026*
+- **Deadline:** *Kamis, 23 April 2026*
