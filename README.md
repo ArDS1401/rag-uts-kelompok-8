@@ -158,10 +158,10 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 
 ## 📚 Referensi & Sumber
 
-- Framework: *(LangChain docs / LlamaIndex docs)*
-- LLM: *(Groq / Gemini / Ollama)*
-- Vector DB: *(ChromaDB / FAISS docs)*
-- Tutorial yang digunakan: *(cantumkan URL)*
+- Framework: (LangChain docs / LlamaIndex docs)
+- LLM: (Gemini / Ollama)
+- Vector DB: (ChromaDB / FAISS docs)
+- Tutorial yang digunakan: (cantumkan URL)
 
 ---
 
