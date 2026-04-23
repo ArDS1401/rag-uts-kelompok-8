@@ -52,7 +52,7 @@ rag-uts-kelompok-8/
 ├── .gitignore
 ├── requirements.txt
 └── README.md
-
+```
 ## ⚡ Cara Memulai (Quickstart)
 
 ### 1. Clone & Setup
