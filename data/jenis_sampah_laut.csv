@@ -1,0 +1,8 @@
+ID,Jenis,Kategori,Subkategori,Contoh,Sifat
+1,Organik,Berdasarkan sifat,Biodegradable,"Sisa makanan, sayur, daun",Mudah terurai
+2,Anorganik,Berdasarkan sifat,Non-biodegradable,"Plastik, kaca, kaleng",Sulit terurai
+3,Sampah basah,Fisik,Garbage,Sisa makanan,Mudah membusuk
+4,Sampah kering,Fisik,Rubbish,"Plastik, kertas, logam",Kering
+5,Tak lapuk,Rubbish,Non-organik,"Kaca, mika",Tidak terurai
+6,Mudah terbakar,Rubbish,Combustible,"Kertas, kayu",Terbakar
+7,Tidak terbakar,Rubbish,Non-combustible,"Kaleng, kawat",Sulit terbakar
