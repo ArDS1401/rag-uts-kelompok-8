@@ -23,38 +23,35 @@ Permasalahan pencarian informasi berbasis dokumen sering kali membutuhkan waktu 
 
 ## 📁 Struktur Proyek
 
-rag-uts-[nama-kelompok]/
-│
-├── data/  
-│   ├── RP_Publish81525.pdf  
-│   ├── dsultan,+10.+Andriani.pdf  
-│   ├── jurnalppt,+Jurnal+Vol+4+No+2+Nas....pdf  
-│   ├── sample_dokumen.txt  
-│   └── share-of-global-plastic-waste-emitted....csv / txt  
-│
-├── src/  
-│   ├── indexing.py        # Pipeline indexing  
-│   ├── query.py           # Query & retrieval  
-│   ├── embeddings.py      # Konfigurasi embedding  
-│   └── utils.py           # Helper functions  
-│
-├── ui/  
-│   └── app.py             # Streamlit UI  
-│
-├── docs/  
-│   └── arsitektur.png     # Diagram arsitektur  
-│
-├── evaluation/  
-│   └── hasil_evaluasi.xlsx  
-│
-├── notebooks/  
-│   └── 01_demo_rag.ipynb  
-│
-├── .env.example  
-├── .gitignore  
-├── requirements.txt  
-└── README.md  
-
+```text
+rag-uts-kelompok-8/
+├── data/
+│   ├── RP_Publish81525.pdf
+│   ├── dsultan,+10.+Andriani.pdf
+│   ├── jurnalppt,+Jurnal+Vol+4+No+2+Nas....pdf
+│   ├── dampak_sampah_laut.csv
+│   ├── jenis_sampah_laut.csv
+│   ├── klasifikasi_ukuran_sampah_laut.csv
+│   └── sumber_sampah_laut.csv
+├── assets/
+│   └── Arsitektur.jpeg
+├── src/
+│   ├── indexing.py        # Pipeline indexing
+│   ├── query.py           # Query & retrieval
+│   ├── embeddings.py      # Konfigurasi embedding
+│   └── utils.py           # Helper functions
+├── ui/
+│   └── app.py             # Streamlit UI
+├── docs/
+│   └── arsitektur.png     # Diagram arsitektur
+├── evaluation/
+│   └── hasil_evaluasi.xlsx
+├── notebooks/
+│   └── 01_demo_rag.ipynb
+├── .env.example
+├── .gitignore
+├── requirements.txt
+└── README.md
 
 ## ⚡ Cara Memulai (Quickstart)
 
