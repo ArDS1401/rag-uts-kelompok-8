@@ -2,8 +2,7 @@
 
 > **Retrieval-Augmented Generation** — Sistem Tanya-Jawab Cerdas Berbasis Dokumen
 
-Starter pack ini adalah **kerangka awal** proyek RAG untuk UTS Data Engineering D3/D4.
-Mahasiswa mengisi, memodifikasi, dan mengembangkan kode ini sesuai topik kelompok masing-masing.
+Permasalahan pencarian informasi berbasis dokumen sering kali membutuhkan waktu lama dan tidak efisien ketika data tidak terstruktur. Oleh karena itu, projek ini mengimplementasikan **Retrieval-Augmented Generation (RAG)** untuk membangun sistem tanya jawab berbasis dokumen dengan studi kasus Sampah Laut.
 
 ---
 
