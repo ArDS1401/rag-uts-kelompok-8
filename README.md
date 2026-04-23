@@ -16,9 +16,9 @@ Mahasiswa mengisi, memodifikasi, dan mengembangkan kode ini sesuai topik kelompo
 | Suqya Rohmatin  | 244311028 | Data Engineer         |
 
 **Topik Domain:** *Sampah Laut*  
-**Stack yang Dipilih:** *(isi: LangChain / LlamaIndex / From Scratch)*  
-**LLM yang Digunakan:** *(isi: Groq / Gemini / Ollama / lainnya)*  
-**Vector DB yang Digunakan:** *(isi: ChromaDB / FAISS / lainnya)*
+**Stack yang Dipilih:** *LangChain*  
+**LLM yang Digunakan:** *Gemini*  
+**Vector DB yang Digunakan:** *ChromaDB*
 
 ---
 
