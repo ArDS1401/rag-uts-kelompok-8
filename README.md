@@ -140,14 +140,13 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 
 ## 🏗️ Arsitektur Sistem
 
-*(Masukkan gambar diagram arsitektur di sini)*
+<img width="1854" height="848" alt="image" src="https://github.com/user-attachments/assets/a77f8b61-0d22-41df-9dea-0fa806900046" />
+
 
 ```
-[Dokumen] → [Loader] → [Splitter] → [Embedding] → [Vector DB]
-                                                         ↕
-[User Query] → [Query Embed] → [Retriever] → [Prompt] → [LLM] → [Jawaban]
-```
-
+[Dokumen] → [Loader] → [Chunking] → [Embedding] → [Vector DB]
+                                      ↕
+[User Query] → [Query Embed] → [Retriever] → [Prompt] → [LLM (Gemini)] → [Jawaban]
 ---
 
 ## 📚 Referensi & Sumber
