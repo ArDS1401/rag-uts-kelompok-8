@@ -16,37 +16,34 @@ Jalankan CLI dengan: python src/query.py
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from google import genai
 
+# Import model embedding dari file buatan kita sendiri
+from embeddings import get_embedding_model
+
+# ─── SETUP LOKAL ─────────────────────────────────────────────────────────────
+# 1. Mengambil API Key dari file .env (lebih profesional & aman)
 load_dotenv()
 
-CHUNK_SIZE    = int(os.getenv("CHUNK_SIZE", 500))
-CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", 50))
-TOP_K         = int(os.getenv("TOP_K", 3))
-VS_DIR        = Path(os.getenv("VECTORSTORE_DIR", "./vectorstore"))
-LLM_MODEL     = os.getenv("LLM_MODEL_NAME", "llama3-8b-8192")
+# 2. Konfigurasi Path Dinamis
+BASE_DIR = Path(__file__).resolve().parent
+VS_DIR   = BASE_DIR / "../vectorstore"
 
-
-# =============================================================
-# TODO MAHASISWA:
-# Pilih implementasi yang sesuai dengan pilihan LLM kalian
-# =============================================================
-
+# 3. Konfigurasi Model (Gunakan versi yang stabil di API publik)
+LLM_MODEL = "gemini-3-flash-preview" 
+TOP_K     = 3
 
 def load_vectorstore():
-    """Memuat vector database yang sudah dibuat oleh indexing.py"""
-    from langchain_community.embeddings import HuggingFaceEmbeddings
+    """Memuat vector database menggunakan model embedding yang konsisten"""
     from langchain_community.vectorstores import Chroma
 
     if not VS_DIR.exists():
         raise FileNotFoundError(
-            f"Vector store tidak ditemukan di '{VS_DIR}'.\n"
-            "Jalankan dulu: python src/indexing.py"
+            f" Vector store tidak ditemukan di '{VS_DIR}'.\n"
+            "Jalankan dulu script indexing.py untuk membuat database!"
         )
 
-    embedding_model = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
-        model_kwargs={"device": "cpu"}
-    )
+    embedding_model = get_embedding_model()
 
     vectorstore = Chroma(
         persist_directory=str(VS_DIR),
@@ -54,18 +51,10 @@ def load_vectorstore():
     )
     return vectorstore
 
-
 def retrieve_context(vectorstore, question: str, top_k: int = TOP_K) -> list:
-    """
-    LANGKAH 1 & 2: Query embedding + Similarity search.
-    
-    Fungsi ini:
-    - Mengubah pertanyaan ke vektor
-    - Mencari top_k chunk paling relevan
-    - Mengembalikan list dokumen relevan
-    """
+    """Mencari potongan dokumen yang paling relevan"""
     results = vectorstore.similarity_search_with_score(question, k=top_k)
-    
+
     contexts = []
     for doc, score in results:
         contexts.append({
@@ -73,33 +62,21 @@ def retrieve_context(vectorstore, question: str, top_k: int = TOP_K) -> list:
             "source": doc.metadata.get("source", "unknown"),
             "score": round(float(score), 4)
         })
-    
     return contexts
 
-
 def build_prompt(question: str, contexts: list) -> str:
-    """
-    LANGKAH 3: Membangun prompt untuk LLM.
-    
-    Prompt yang baik untuk RAG harus:
-    - Memberikan instruksi jelas ke LLM
-    - Menyertakan konteks yang sudah diambil
-    - Menanyakan pertanyaan user
-    - Meminta LLM untuk jujur jika tidak tahu
-    
-    TODO: Modifikasi prompt ini sesuai domain dan bahasa proyek kalian!
-    """
+    """Menyusun perintah untuk dikirim ke Gemini"""
     context_text = "\n\n---\n\n".join(
         [f"[Sumber: {c['source']}]\n{c['content']}" for c in contexts]
     )
 
-    prompt = f"""Kamu adalah asisten yang membantu menjawab pertanyaan berdasarkan dokumen yang diberikan.
+    prompt = f"""Kamu adalah asisten cerdas yang membantu menjawab pertanyaan berdasarkan dokumen.
 
 INSTRUKSI:
-- Jawab HANYA berdasarkan konteks di bawah ini
-- Jika jawaban tidak ada dalam konteks, katakan "Saya tidak menemukan informasi tersebut dalam dokumen yang tersedia"
-- Jawab dalam Bahasa Indonesia yang jelas dan ringkas
-- Jangan mengarang informasi yang tidak ada di konteks
+- Jawab HANYA berdasarkan konteks di bawah ini.
+- Jika informasi tidak ada, katakan "Saya tidak tahu".
+- Gunakan Bahasa Indonesia yang ringkas.
+- Jangan membuat informasi yang tidak ada dan menghalu.
 
 KONTEKS:
 {context_text}
@@ -108,125 +85,65 @@ PERTANYAAN:
 {question}
 
 JAWABAN:"""
-    
     return prompt
 
+def get_answer_gemini(prompt: str) -> str:
+    """Mengirim prompt ke Google Gemini menggunakan SDK terbaru"""
+    api_key = os.getenv("GOOGLE_API_KEY")
+    if not api_key:
+        raise ValueError(" API Key tidak ditemukan! Pastikan file .env sudah benar.")
 
-# ─────────────────────────────────────────────────────────────
-# OPSI LLM A: Groq (gratis, cepat) — REKOMENDASI
-# ─────────────────────────────────────────────────────────────
-def get_answer_groq(prompt: str) -> str:
-    """Menggunakan Groq API (gratis, sangat cepat)."""
-    from groq import Groq
+    client = genai.Client(api_key=api_key)
     
-    client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-    response = client.chat.completions.create(
-        model=LLM_MODEL,  # "llama3-8b-8192" atau "mixtral-8x7b-32768"
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.1,   # Rendah = jawaban lebih konsisten/faktual
-        max_tokens=1024
+    response = client.models.generate_content(
+        model=LLM_MODEL,
+        contents=prompt
     )
-    return response.choices[0].message.content
+    return response.text
 
-
-# ─────────────────────────────────────────────────────────────
-# OPSI LLM B: Google Gemini (gratis tier)
-# ─────────────────────────────────────────────────────────────
-# def get_answer_gemini(prompt: str) -> str:
-#     import google.generativeai as genai
-#     genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-#     model = genai.GenerativeModel("gemini-1.5-flash")
-#     response = model.generate_content(prompt)
-#     return response.text
-
-
-# ─────────────────────────────────────────────────────────────
-# OPSI LLM C: Ollama (100% offline, gratis)
-# Pastikan Ollama sudah diinstall dan model sudah di-pull:
-# ollama pull llama3
-# ─────────────────────────────────────────────────────────────
-# def get_answer_ollama(prompt: str) -> str:
-#     import requests
-#     response = requests.post(
-#         "http://localhost:11434/api/generate",
-#         json={"model": "llama3", "prompt": prompt, "stream": False}
-#     )
-#     return response.json()["response"]
-
-
-def answer_question(question: str, vectorstore=None) -> dict:
-    """
-    Fungsi utama: menerima pertanyaan, mengembalikan jawaban + konteks.
-    
-    Returns:
-        dict dengan keys: answer, contexts, prompt
-    """
-    if vectorstore is None:
-        vectorstore = load_vectorstore()
-    
-    # Retrieve
-    print(f"🔍 Mencari konteks relevan untuk: '{question}'")
+def answer_question(question: str, vectorstore) -> dict:
+    """Fungsi utama penggerak RAG"""
     contexts = retrieve_context(vectorstore, question)
-    print(f"   ✅ {len(contexts)} chunk relevan ditemukan")
-    
-    # Build prompt
     prompt = build_prompt(question, contexts)
     
-    # Generate answer
-    print("🤖 Mengirim ke LLM...")
-    
-    # TODO: Ganti sesuai LLM yang kalian pilih
-    answer = get_answer_groq(prompt)
-    # answer = get_answer_gemini(prompt)
-    # answer = get_answer_ollama(prompt)
-    
+    print(" Gemini sedang berpikir...")
+    answer = get_answer_gemini(prompt)
+
     return {
-        "question": question,
         "answer": answer,
-        "contexts": contexts,
-        "prompt": prompt
+        "contexts": contexts
     }
 
-
-# ─── CLI Interface ─────────────────────────────────────────────────────────────
+# ─── INTERFACE TERMINAL ────────────────────────────────────────────────────────
 if __name__ == "__main__":
     print("=" * 55)
-    print("  🤖 RAG System — UTS Data Engineering")
-    print("  Ketik 'keluar' untuk mengakhiri")
+    print("  SISTEM RAG LOKAL — Proyek UTS Kelompok 8")
     print("=" * 55)
 
     try:
         vs = load_vectorstore()
-        print("✅ Vector database berhasil dimuat\n")
-    except FileNotFoundError as e:
-        print(f"❌ Error: {e}")
-        exit(1)
+        print(" Database berhasil dimuat. Siap menjawab!\n")
+    except Exception as e:
+        print(f"{e}")
+        import sys
+        sys.exit()
 
     while True:
-        print()
-        question = input("❓ Pertanyaan Anda: ").strip()
-        
-        if question.lower() in ["keluar", "exit", "quit", "q"]:
-            print("👋 Sampai jumpa!")
+        query = input("\n❓ Tanya sesuatu (atau ketik 'keluar'): ").strip()
+
+        if query.lower() in ["keluar", "exit", "q"]:
+            print(" Program dihentikan. Terima Kasih.")
             break
-        
-        if not question:
-            print("⚠️  Pertanyaan tidak boleh kosong.")
-            continue
-        
+
+        if not query: continue
+
         try:
-            result = answer_question(question, vs)
-            
-            print("\n" + "─" * 55)
-            print("💬 JAWABAN:")
+            result = answer_question(query, vs)
+            print("\n JAWABAN:")
             print(result["answer"])
             
-            print("\n📚 SUMBER KONTEKS:")
+            print("\n📚 SUMBER:")
             for i, ctx in enumerate(result["contexts"], 1):
-                print(f"  [{i}] Skor: {ctx['score']:.4f} | {ctx['source']}")
-                print(f"      {ctx['content'][:100]}...")
-            print("─" * 55)
-            
+                print(f"   [{i}] {ctx['source']} (Skor: {ctx['score']})")
         except Exception as e:
-            print(f"❌ Error: {e}")
-            print("Pastikan API key sudah diatur di file .env")
+            print(f" Terjadi kesalahan: {e}")

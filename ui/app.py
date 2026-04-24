@@ -27,7 +27,7 @@ st.set_page_config(
 )
 
 # ─── Header ───────────────────────────────────────────────────────────────────
-st.title("Sistem Tanya-Jawab RAG")
+st.title("Sistem Tanya-Jawab RAG Mengenai Sampah di Laut")
 st.caption("UTS Data Engineering — Retrieval-Augmented Generation")
 st.divider()
 
@@ -49,9 +49,9 @@ with st.sidebar:
     
     # TODO: Isi informasi kelompok kalian di sini
     st.markdown("""
-    **Kelompok:** *(nama kelompok)*  
-    **Domain:** *(domain dokumen)*  
-    **LLM:** *(provider LLM)*  
+    **Kelompok:** *(Kelompok 8)*  
+    **Domain:** *(PDF, CSV)*  
+    **LLM:** *(Gemini 3 Flash Preview)*  
     **Vector DB:** ChromaDB  
     **Embedding:** multilingual-MiniLM
     """)

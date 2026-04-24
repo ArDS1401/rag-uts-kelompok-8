@@ -1,10 +1,13 @@
-# Core
-numpy>=1.24.0
-pandas>=2.0.0
+langchain==1.2.15
+langchain-community==0.4.1
+langchain-chroma==1.1.0
+langchain-text-splitters==1.1.2
+google-genai==1.73.1
+pypdf==6.10.2
+sentence-transformers==5.4.1
+chromadb==1.5.8
+tabula-py==2.10.0
+pandas==2.3.3
+jpype1==1.7.0
+streamlit==1.56.0
 
-# RAG minimal
-faiss-cpu>=1.7.4
-sentence-transformers>=2.6.0
-
-# Utilities (opsional)
-tqdm>=4.66.0
