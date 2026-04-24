@@ -144,7 +144,7 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 
 ## 🏗️ Arsitektur Sistem
 
-<img width="490" height="751" alt="WhatsApp Image 2026-04-23 at 10 51 17" src="https://github.com/user-attachments/assets/fbb9dcf0-83cc-41c7-93c2-d83adac06cac" />
+<img width="3353" height="7885" alt="Data Ingestion to Query-2026-04-24-014726" src="https://github.com/user-attachments/assets/e575b709-92b5-49a5-8bf7-6aea7450107d" />
 
 
 ```
