@@ -45,6 +45,7 @@ rag-uts-kelompok-8/
 ├── docs/
 │   └── arsitektur.png     # Diagram arsitektur
 ├── evaluation/
+    └──Evaluasi_Sistem.xlsx
 │   └── hasil_evaluasi.xlsx
 ├── notebooks/
 │   └── 01_demo_rag.ipynb
