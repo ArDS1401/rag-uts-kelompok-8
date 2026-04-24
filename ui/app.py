@@ -50,7 +50,7 @@ with st.sidebar:
     # TODO: Isi informasi kelompok kalian di sini
     st.markdown("""
     **Kelompok:** *(Kelompok 8)*  
-    **Domain:** *(PDF, CSV)*  
+    **Domain:** *(Sampah Laut)*  
     **LLM:** *(Gemini 3 Flash Preview)*  
     **Vector DB:** ChromaDB  
     **Embedding:** multilingual-MiniLM
