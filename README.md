@@ -34,16 +34,14 @@ rag-uts-kelompok-8/
 │   ├── klasifikasi_ukuran_sampah_laut.csv
 │   └── sumber_sampah_laut.csv
 ├── assets/
-│   └── Arsitektur.jpeg
+│   └── Stuktur Diagram.drawio.png
 ├── src/
 │   ├── indexing.py        # Pipeline indexing
 │   ├── query.py           # Query & retrieval
-│   ├── embeddings.py      # Konfigurasi embedding
-│   └── utils.py           # Helper functions
 ├── ui/
 │   └── app.py             # Streamlit UI
 ├── docs/
-│   └── arsitektur.png     # Diagram arsitektur
+│   └── LAPORAN UTS RAG KEL-8.docx.pdf  #Diagram arsitektur
 ├── evaluation/
     └──Evaluasi_Sistem.xlsx
 │   └── hasil_evaluasi.xlsx
