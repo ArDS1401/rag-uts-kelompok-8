@@ -143,7 +143,8 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 
 ## 🏗️ Arsitektur Sistem
 
-<img width="3353" height="7885" alt="Data Ingestion to Query-2026-04-24-014726" src="https://github.com/user-attachments/assets/e575b709-92b5-49a5-8bf7-6aea7450107d" />
+<img width="571" height="594" alt="Struktur Diagram drawio" src="https://github.com/user-attachments/assets/a8bb4558-59e6-4672-898d-1fcbe2fcdde0" />
+
 
 
 ```
