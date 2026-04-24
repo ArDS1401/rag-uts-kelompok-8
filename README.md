@@ -34,17 +34,16 @@ rag-uts-kelompok-8/
 │   ├── klasifikasi_ukuran_sampah_laut.csv
 │   └── sumber_sampah_laut.csv
 ├── assets/
-│   └── Arsitektur.jpeg
+│   └── Stuktur Diagram.drawio.png
 ├── src/
 │   ├── indexing.py        # Pipeline indexing
 │   ├── query.py           # Query & retrieval
-│   ├── embeddings.py      # Konfigurasi embedding
-│   └── utils.py           # Helper functions
 ├── ui/
 │   └── app.py             # Streamlit UI
 ├── docs/
-│   └── arsitektur.png     # Diagram arsitektur
+│   └── LAPORAN UTS RAG KEL-8.docx.pdf  #Diagram arsitektur
 ├── evaluation/
+    └──Evaluasi_Sistem.xlsx
 │   └── hasil_evaluasi.xlsx
 ├── notebooks/
 │   └── 01_demo_rag.ipynb
@@ -60,7 +59,7 @@ rag-uts-kelompok-8/
 ```bash
 # Clone repository ini
 git clone https://github.com/ArDS1401/rag-uts-kelompok8.git
-cd rag-uts-[kelompok]
+cd rag-uts-kelompok8
 
 # Buat virtual environment
 python -m venv venv
@@ -86,7 +85,13 @@ cp .env.example .env
 Letakkan dokumen sumber Anda di folder `data/`:
 ```bash
 # Contoh: salin PDF atau TXT ke folder data
-cp dokumen-saya.pdf data/
+cp RP_Publish81525.pdf data/
+cp jurnalppt,+Jurnal+Vol+4+No+2+Naskah+2+Angkasa+(10-18).pdf data/
+cp dsultan%2C%2B10.%2BAndriani.pdf data/
+cp dampak_sampah_laut.csv data/
+cp jenis_sampah_laut.csv data/
+cp klasifikasi_ukuran_sampah_laut.csv data/
+cp sumber_sampah_laut.csv data/
 ```
 
 ### 4. Jalankan Indexing (sekali saja)
@@ -122,29 +127,30 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 
 ## 📊 Hasil Evaluasi
 
-*(Isi setelah pengujian selesai)*
+*(Berdasarkan pengujian yang telah dilakukan, di dapat hasil sebagai beriku: )*
 
-| # | Pertanyaan | Jawaban Sistem | Jawaban Ideal | Skor (1-5) |
-|---|-----------|----------------|---------------|-----------|
-| 1 | ... | ... | ... | ... |
-| 2 | ... | ... | ... | ... |
-| 3 | ... | ... | ... | ... |
-| 4 | ... | ... | ... | ... |
-| 5 | ... | ... | ... | ... |
-| 6 | ... | ... | ... | ... |
-| 7 | ... | ... | ... | ... |
-| 8 | ... | ... | ... | ... |
-| 9 | ... | ... | ... | ... |
-| 10 | ... | ... | ... | ... |
+| # | Pertanyaan | Jawaban Sistem | Jawaban Ideal | Skor |
+|---|-----------|----------------|---------------|------|
+| 1 | Sampah laut itu sebenarnya paling banyak jenis apa sih di daerah Makassar? | Berdasarkan data Pantai Tanjung Bayang, jenis terbanyak adalah *puntung rokok* (32,22% dan 0,88/m²). | Berdasarkan penelitian di Makassar, sampah paling dominan adalah plastik (70–80%) seperti kantong plastik, botol, dan fragmen plastik. | 3 |
+| 2 | Kenapa plastik sering banget jadi sampah yang paling dominan di laut? | Plastik dominan karena mudah terbawa arus dan merupakan jenis sampah yang paling umum ditemukan. | Plastik dominan karena sulit terurai (persistent), penggunaan tinggi, dan pengelolaan limbah yang kurang baik. | 4 |
+| 3 | Sampah di laut itu asalnya dari mana aja sih? | Sampah berasal dari aktivitas manusia di darat dan laut (antropogenik). | ±80% berasal dari darat (limbah rumah tangga, industri, sungai) dan sisanya dari aktivitas laut (kapal, perikanan, budidaya). | 4 |
+| 4 | Kok bisa ya sampah numpuk di satu tempat tertentu di pantai atau pulau? | Sampah menumpuk karena:<br>1. Terbawa arus & ombak<br>2. Buangan domestik<br>3. Aktivitas manusia<br>4. Karakteristik sampah | Disebabkan arus laut dan angin yang membawa sampah lalu terjebak di area sirkulasi lambat (teluk/hotspot). | 5 |
+| 5 | Sampah laut itu berbahaya nggak sih buat ikan dan kehidupan laut lainnya? | Ya, berbahaya dan merusak ekosistem serta habitat laut. | Dampak:<br>- Entanglement (terjerat)<br>- Ingestion (tertelan)<br>- Mikroplastik masuk rantai makanan | 4 |
+| 6 | Gimana sih cara peneliti ngukur banyaknya sampah di pantai atau laut? | Metode:<br>1. Observasi saat surut<br>2. Form CSIRO<br>3. Kategorisasi sampah | Metode transek:<br>- Area ±100 m<br>- Hitung item/m²<br>- Berat (g/m²) | 5 |
+| 7 | Apa bedanya sampah makro sama sampah meso? | Perbedaan pada ukuran (meso disaring 0,5 cm, makro lebih besar). | Makro > 2,5 cm<br>Meso 0,5–2,5 cm | 4 |
+| 8 | Kenapa daerah yang banyak aktivitas manusia sampahnya lebih banyak? | Karena jumlah penduduk, aktivitas, dan konsumsi tinggi serta wisata. | Karena kepadatan penduduk, aktivitas tinggi, dan keterbatasan pengelolaan sampah (TPA). | 5 |
+| 9 | Orang-orang di sekitar pesisir biasanya mengelola sampahnya gimana sih? | Umumnya dibuang langsung ke laut. | Selain dibuang ke laut, juga dibakar karena keterbatasan fasilitas pengelolaan sampah. | 4 |
+| 10 | Solusi paling penting buat ngurangin sampah laut itu apa? | Partisipasi masyarakat sangat penting. | Solusi:<br>- Infrastruktur pengelolaan<br>- Edukasi masyarakat<br>- Teknologi (trash trap) | 4 |
 
-**Rata-rata Skor:** ...  
-**Analisis:** ...
+**Rata-rata Skor:**  4.2 
+**Analisis:** Sistem saat ini masih memiliki keterbatasan dalam melakukan sintesis data makro karena jawaban yang dihasilkan cenderung terlalu berfokus pada lokasi penelitian spesifik. Selain itu, akurasi parameter teknis terkait klasifikasi ukuran sampah (Meso vs Makro) serta pendalaman aspek ilmiah, seperti persistensi material plastik masih perlu ditingkatkan.
 
 ---
 
 ## 🏗️ Arsitektur Sistem
 
-<img width="490" height="751" alt="WhatsApp Image 2026-04-23 at 10 51 17" src="https://github.com/user-attachments/assets/fbb9dcf0-83cc-41c7-93c2-d83adac06cac" />
+<img width="571" height="594" alt="Struktur Diagram drawio" src="https://github.com/user-attachments/assets/a8bb4558-59e6-4672-898d-1fcbe2fcdde0" />
+
 
 
 ```
