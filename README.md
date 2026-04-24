@@ -59,7 +59,7 @@ rag-uts-kelompok-8/
 ```bash
 # Clone repository ini
 git clone https://github.com/ArDS1401/rag-uts-kelompok8.git
-cd rag-uts-[kelompok]
+cd rag-uts-kelompok8
 
 # Buat virtual environment
 python -m venv venv
@@ -85,7 +85,13 @@ cp .env.example .env
 Letakkan dokumen sumber Anda di folder `data/`:
 ```bash
 # Contoh: salin PDF atau TXT ke folder data
-cp dokumen-saya.pdf data/
+cp RP_Publish81525.pdf data/
+cp jurnalppt,+Jurnal+Vol+4+No+2+Naskah+2+Angkasa+(10-18).pdf data/
+cp dsultan%2C%2B10.%2BAndriani.pdf data/
+cp dampak_sampah_laut.csv data/
+cp jenis_sampah_laut.csv data/
+cp klasifikasi_ukuran_sampah_laut.csv data/
+cp sumber_sampah_laut.csv data/
 ```
 
 ### 4. Jalankan Indexing (sekali saja)
@@ -121,7 +127,7 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 
 ## 📊 Hasil Evaluasi
 
-*(Isi setelah pengujian selesai)*
+*(Berdasarkan pengujian yang telah dilakukan, di dapat hasil sebagai beriku: )*
 
 | # | Pertanyaan | Jawaban Sistem | Jawaban Ideal | Skor |
 |---|-----------|----------------|---------------|------|
